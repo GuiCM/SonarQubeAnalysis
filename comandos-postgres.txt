@@ -1,0 +1,25 @@
+CREATE TABLE table_postgres
+(
+    Id INT NOT NULL PRIMARY KEY
+);
+
+
+CREATE USER test WITH PASSWORD 'test';
+ALTER USER sonar_user WITH PASSWORD 'sonar_admin';
+GRANT ALL PRIVILEGES ON DATABASE sonar_platform_services TO sonar_user;
+GRANT USAGE, CREATE ON SCHEMA public TO sonar_user
+
+DROP OWNED BY test;
+DROP USER test;
+
+/*CREATE USER test WITH ENCRYPTED PASSWORD 'test';
+
+GRANT ALL PRIVILEGES ON DATABASE sonar_platform_services TO test;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO test;
+GRANT USAGE, CREATE ON SCHEMA public TO test
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO test;
+REVOKE SELECT ON ALL TABLES IN SCHEMA public TO test;
+
+SELECT * from information_schema.table_privileges WHERE grantee = 'test' LIMIT 5;*/
+SELECT * from information_schema.schemata WHERE grantee = 'sonar_user' LIMIT 5;
