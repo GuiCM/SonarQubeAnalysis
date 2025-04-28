@@ -8,7 +8,7 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin      
+      POSTGRES_PASSWORD: admin
     volumes:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
@@ -38,7 +38,13 @@ networks:
 
 volumes:
   postgresql:
+    name: sonarqube-analysis_postgresql
   postgresql_data:
+    external: true
+    name: sonarqube-analysis_postgresql_data
   sonarqube_logs:
+    name: sonarqube-analysis_sonarqube_logs
   sonarqube_data:
-  sonarqube_extensions:  
+    name: sonarqube-analysis_sonarqube_data
+  sonarqube_extensions:
+    name: sonarqube-analysis_sonarqube_extensions
